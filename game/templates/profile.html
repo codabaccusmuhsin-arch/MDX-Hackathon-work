@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spider-Man Profile</title>
+    
+    <!-- Link external CSS -->
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+
+    <div class="profile-container">
+
+        <h1>Spider-Man Profile</h1>
+
+        <h2>Name</h2>
+        <p>Spider-Man</p>
+
+        <h2>Identity</h2>
+        <p>Unknown, but is widely suspected to be Peter Parker, a freelance photographer and science enthusiast from Queens, New York.</p>
+
+        <h2>Notable Deeds</h2>
+        <ul>
+            <li>Helped 36 neighbourhood grandmas cross the road.</li>
+            <li>Retrieved and returned over 500 stolen bicycles to their rightful owners.</li>
+            <li>Regularly foils robberies, carjackings, and other petty crimes.</li>
+            <li>Assisted in the evacuation of countless civilians during major superhero clashes.</li>
+        </ul>
+
+        <h2>Known Abilities</h2>
+        <ul>
+            <li>Superhuman strength, speed, and agility.</li>
+            <li>The ability to cling to most surfaces.</li>
+            <li>Proficient in hand-to-hand combat and improvisation.</li>
+        </ul>
+
+    </div>
+
+    <!-- Link external JS -->
+    <script src="{% static 'js/profile.js' %}"></script>
+</body>
+</html>

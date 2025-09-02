@@ -1,0 +1,252 @@
+/* -----------------------
+ * Global Page Styles
+ * ----------------------- */
+body {
+    background: linear-gradient(to bottom right, red, black);
+    min-height: 100vh;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: monospace;
+    color: white;
+    scroll-snap-type: y mandatory;
+}
+
+/* -----------------------
+ * Navigation Bar Styling
+ * ----------------------- */
+.navbar {
+    background-color: black;
+    padding: 10px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 2px solid transparent; 
+    transition: border-color 0.3s;
+}
+
+.navbar li a:hover {
+    border-color: red;
+}
+
+.nav-content-wrapper {
+    margin-left: 80px; 
+    display: flex;
+    justify-content: center;
+}
+
+/* -------------------------------------
+ * Main Layout with Sidebar and Calendar
+ * ------------------------------------- */
+.page-content-wrapper {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    padding-top: 5px;
+    box-sizing: border-box;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    margin-top: -20px; 
+}
+
+.sidebar {
+    width: 80px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 0 10px 10px 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.2); 
+    cursor: pointer; 
+    transition: width 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.sidebar-content {
+    padding: 20px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out 0.2s;
+}
+
+/* -------------------------------------
+ * NEW: Hover & Sticky States
+ * ------------------------------------- */
+.sidebar::after {
+    content: '>';
+    font-size: 2rem;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.5);
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.sidebar:hover::after, .sidebar.sticky::after {
+    animation: none;
+    content: '';
+}
+
+.sidebar:hover, .sidebar.sticky {
+    width: 250px;
+}
+
+.sidebar:hover .sidebar-content, .sidebar.sticky .sidebar-content {
+    opacity: 1;
+}
+
+.sidebar:hover + .main-content, .sidebar.sticky + .main-content {
+    transform: translateX(85px);
+    opacity: 0.7;
+}
+
+@keyframes pulse {
+    0% { transform: translateY(-50%) scale(1); opacity: 0.7; }
+    50% { transform: translateY(-50%) scale(1.1); opacity: 1; }
+    100% { transform: translateY(-50%) scale(1); opacity: 0.7; }
+}
+
+/* -----------------------
+ * Calendar Styling
+ * ----------------------- */
+.calendar-container {
+    width: 500px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+    font-family: Verdana;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.calendar-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.calendar-header button:hover {
+    color: red;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+
+.calendar-day, .calendar-date {
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 5px;
+    font-family: verdana;
+}
+
+.calendar-day {
+    font-weight: bold;
+    color: #ccc;
+}
+
+.calendar-date {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s;
+}
+
+.calendar-date:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.calendar-date.current-date {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+/* -----------------------
+ * Interactive Map Styling
+ * ----------------------- */
+.map-section-wrapper {
+    height: 100vh;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    scroll-snap-align: start;
+    scroll-margin-top: 70px;
+}
+
+.map-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.interactive-canvas {
+    border: 2px solid white;
+    cursor: crosshair;
+    border-radius: 10px;
+}
+
+.info-box {
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.info-box h3 {
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 50px;        
+}

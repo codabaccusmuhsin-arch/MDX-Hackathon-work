@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StarkNet Home</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Lexend:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+  <!-- Static CSS -->
+  <link rel="stylesheet" href="{% static 'home.css' %}">
+  <link rel="stylesheet" href="{% static 'home1.css' %}">
+
+  <!-- Static JS -->
+  <script src="{% static 'home.js' %}" defer></script>
+  <script src="{% static 'responsiveNavbar.js' %}" defer></script>
+</head>
+<body>
+  <div class="home-page"> <!-- Wrapper -->
+
+    <!-- Navbar -->
+    <nav>
+      <div class="logo">
+        <a href="#"> 
+          <img src="{% static 'images/Avengers.png' %}" alt="Logo">
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="{% url 'stark-page' %}">Jarvis</a></li>
+        <li><a href="{% url 'base' %}">Karma-Taj</a></li>
+        <li><a href="{% url 'index' %}">Groot</a></li>
+        <li><a href="{% url 'index1' %}">Friday</a></li>
+      </ul>
+      <button id="theme-btn">
+        <img src="{% static 'images/day.png' %}" alt="Theme">
+        <img src="{% static 'images/night.png' %}" alt="Theme">
+      </button>
+      <button class="hamburger" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-box">
+        <h1 class="slide-up">StarkNet</h1>
+        <p class="fade-in">The official website for the Avengers</p>
+        <button class="start-btn" onclick="scrollToAbout()">Get Started</button>
+        <div class="cover-img">
+          <img src="{% static 'images/iron_men.jpg' %}" alt="Product">
+        </div>
+      </div>
+    </section>
+
+    <div id="about">
+      <h2 id="about-title">Choose your hero</h2>
+    </div>
+
+    <script>
+      function scrollToAbout() {
+        document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+        const title = document.getElementById("about-title");
+        title.classList.remove("typewriter");
+        void title.offsetWidth; 
+        title.classList.add("typewriter");
+      }
+    </script>
+
+    <!-- Wiki Tiles Section -->
+    <section class="tiles-container">
+
+      <!-- Groot Tile -->
+      <div class="tile" style="background-image: url('{% static "images/Groot.jpg" %}');">
+        <div class="tile-content">
+          <h2>Groot</h2>
+          <p>He is Groot.</p>
+          <a href="{% url 'index' %}" class="tile-btn">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Stark Tile -->
+      <div class="tile" style="background-image: url('{% static "images/iron.jpg" %}');">
+        <div class="tile-content">
+          <h2>Stark</h2>
+          <p>Genius, billionaire, playboy, philanthropist</p>
+          <a href="{% url 'stark-page' %}" class="tile-btn">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Spiderman Tile -->
+      <div class="tile" style="background-image: url('{% static "images/Spider_man.jpg" %}');">
+        <div class="tile-content">
+          <h2>Spiderman</h2>
+          <p>Your friendly neighbourhood friend</p>
+          <a href="{% url 'index1' %}" class="tile-btn">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Dr Strange Tile -->
+      <div class="tile" style="background-image: url('{% static "images/Dr_strange.jpg" %}');">
+        <div class="tile-content">
+          <h2>Dr Strange</h2>
+          <p>Time bends, reality shatters, but I remain.</p>
+          <a href="#" class="tile-btn">Learn More</a>
+        </div>
+      </div>
+
+    </section>
+  </div> <!-- end .home-page -->
+</body>
+</html>

@@ -1,0 +1,80 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.navbar {
+    background-color: #1f1f1f;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.navbar ul li a:hover {
+    color: #ff0000;
+}
+
+.navbar ul li a.active {
+    color: #ff0000;
+}
+
+.logbook-container {
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+}
+
+.logbook-container h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.logbook-container p {
+    margin-top: 0;
+    color: #c0c0c0;
+}
+
+#logbook-list {
+    margin-top: 1.5rem;
+}
+
+.mission-card {
+    background-color: #1f1f1f;
+    border-left: 4px solid #ff0000;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    transition: transform 0.2s;
+}
+
+.mission-card:hover {
+    transform: scale(1.02);
+}
+
+.mission-card h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.mission-card p {
+    margin: 0.5rem 0 0;
+    color: #c0c0c0;
+}

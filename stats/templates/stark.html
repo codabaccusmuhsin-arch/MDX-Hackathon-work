@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Financial Dashboard</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Lexend:wght@100..900&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'stats/stark.css' %}">
+  <link rel="stylesheet" href="{% static 'stats/style.css' %}">
+
+  <!-- JS -->
+  <script src="{% static 'stats/darkmode.js' %}" defer></script>
+  <script src="{% static 'stats/responsiveNavbar.js' %}" defer></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">
+    <a href="{% url 'home' %}">Return to base</a>
+  </div>
+  <ul class="nav-links">
+    <li><a href="{% url 'stark-page' %}">Jarvis</a></li>
+    <li><a href="#">Karma-Taj</a></li>
+    <li><a href="{% url 'index' %}">Groot</a></li>
+    <li><a href="{% url 'index1' %}">Friday</a></li>
+  </ul>
+  <button id="theme-btn">Theme</button>
+  <button class="hamburger" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="page-transition">
+
+  <h1 id="jarvis-header">J.A.R.V.I.S</h1>
+  <h2 id="acronym-header">Just A Rather Very Intelligent System</h2>
+
+  <button id="askJarvis-Btn" onclick="scrollToJarvis()">Ask Jarvis</button>
+  <script>
+    function scrollToJarvis() {
+      document.querySelector(".assistant").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+  <!-- ===================== -->
+  <!-- Financial Info Boxes -->
+  <!-- ===================== -->
+  <section class="info-boxes">
+    <div class="info-box">
+      <h2>Expenses</h2>
+      <p>$<span id="expenses-value">1800000</span></p>
+    </div>
+    <div class="info-box">
+      <h2>Revenue</h2>
+      <p>$<span id="revenue-value">2400000</span></p>
+    </div>
+    <div class="info-box">
+      <h2>Profit/Loss</h2>
+      <p>$<span id="profit-value">600000</span></p>
+    </div>
+    <div class="info-box">
+      <h2>Budget Allocation</h2>
+      <p>$<span id="budget-value">500000</span></p>
+    </div>
+    <div class="info-box">
+      <h2>Forecasted Growth</h2>
+      <p><span id="growth-value">28.5</span>%</p>
+    </div>
+    <div class="info-box">
+      <h2>Risk Flag</h2>
+      <p><span id="risk-value">Moderate</span></p>
+    </div>
+    <div class="info-box">
+  <h2>Alerts & Triggers</h2>
+  {% if alerts %}
+    <ul class="alerts-list">
+      {% for alert in alerts %}
+        <li class="alert-{{ alert.severity }}">{{ alert.message }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No alerts</p>
+  {% endif %}
+</div>
+
+  </section>
+
+  <!-- ===================== -->
+  <!-- AI Chat / J.A.R.V.I.S. -->
+  <!-- ===================== -->
+  <section class="assistant">
+    <h2>Financial Intelligence Assistant</h2>
+    <p>Ask questions about your financial data and get intelligent insights</p>
+
+    <div class="chat-messages" id="chat">
+      <div class="message">Hello! I am J.A.R.V.I.S. How can I assist you today?</div>
+    </div>
+
+    <input id="message" type="text" placeholder="Type a message">
+    <button id="send">Send</button>
+  </section>
+
+</div>
+
+<!-- Chatbot JS -->
+<script src="{% static 'stats/chatbot.js' %}"></script>
+
+</body>
+</html>

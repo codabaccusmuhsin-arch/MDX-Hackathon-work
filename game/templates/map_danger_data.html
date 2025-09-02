@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map Danger Data</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #111; color: #eee; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #222; }
+        th, td { padding: 10px; border: 1px solid #555; text-align: left; }
+        th { background: #333; }
+        tr:nth-child(even) { background: #2a2a2a; }
+        h1 { color: #ff4444; }
+    </style>
+</head>
+<body>
+    <h1>🗺️ Map Danger Data</h1>
+
+    {% if dangers %}
+    <table>
+        <tr>
+            <th>X</th>
+            <th>Y</th>
+            <th>Category</th>
+            <th>Details</th>
+            <th>Created</th>
+        </tr>
+        {% for danger in dangers %}
+        <tr>
+            <td>{{ danger.x }}</td>
+            <td>{{ danger.y }}</td>
+            <td>{{ danger.category }}</td>
+            <td>{{ danger.details }}</td>
+            <td>{{ danger.created_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No danger data recorded yet.</p>
+    {% endif %}
+</body>
+</html>

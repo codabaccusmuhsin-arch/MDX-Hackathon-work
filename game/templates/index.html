@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Marvel Hero Battle</title>
+    <link rel="stylesheet" href="{% static 'game.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'popup.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="{% url 'home' %}" class="nav-link">Return to Base</a>
+        </div>
+        <div class="nav-right">
+            <a href="{% url 'signup_page' %}" class="nav-link">Sign Up</a>
+
+            <a href="{% url 'login_page' %}" class="nav-link">Login</a>
+        </div>
+    </nav>
+        <!-- Score Display -->
+    <div class="score-display">
+        Score: <span id="score">0</span>
+    </div>
+    <span id="loggedUsername" style="display:none;">{{ user.username }}</span>
+
+    <div class="marvel-logo">
+        <span class="marvel-text">MARVEL</span>
+        <span class="battle-text">HERO BATTLE</span>
+    </div>
+
+    <!-- Hero Setup -->
+    <div class="setup">
+        <input id="heroName" type="text" placeholder="Hero Name (groot)">
+        <input id="heroPower" type="text" placeholder="Super Powers (tree)">
+        <input id="heroWeakness" type="text" placeholder="Weakness (fire)">
+        <button id="startGame" class="glow-button">Start Game</button>
+        <button id="resetGame" class="secondary glow-button">Reset</button>
+    </div>
+
+    <!-- Bars -->
+    <div class="bars">
+        <div class="bar-row">
+            <div class="bar-label">Hero: <span id="heroLabel"></span></div>
+            <progress id="heroHP" value="100" max="100"></progress>
+        </div>
+        <div class="bar-row">
+            <div class="bar-label">Villain: <span id="villainLabel"></span></div>
+            <progress id="villainHP" value="100" max="100"></progress>
+        </div>
+        <div class="bar-row">
+            <div class="bar-label">Environment Interest</div>
+            <progress id="publicHP" value="70" max="100"></progress>
+        </div>
+    </div>
+
+    <!-- Chat -->
+    <div id="chat"></div>
+
+    <!-- Input -->
+    <div class="input-row">
+        <input id="message" type="text" placeholder="Type a choice or command">
+        <button id="send" class="glow-button">Send</button>
+    </div>
+
+    <!-- Floating User Button -->
+    <div class="user-btn" id="userBtn">☰</div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>User Menu</h3>
+            <span class="close-btn" id="closeSidebar">&times;</span>
+        </div>
+        <ul>
+            <li><a href="{% url 'user_info' %}">User Info</a></li>
+            <li><a href="{% url 'leaderboard' %}">Leaderboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+
+    </div>
+<!-- Marvel Trivia Popup -->
+    <div id="popup-overlay">
+    <div id="popup-box">
+        <span id="close-popup">&times;</span> <!-- Cross button -->
+        <h2>Marvel Trivia</h2>
+        <p id="question"></p>
+        <input type="text" id="answer" placeholder="Your answer here">
+        <br>
+        <button id="submit-btn">Submit</button>
+        <p id="feedback"></p>
+        <div id="quote"></div>
+    </div>
+    </div>
+
+
+    <!-- JS -->
+    <script src="{% static 'game.js' %}"></script>
+    <script src="{% static 'popup.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Map Homepage</title>
+    <link rel="stylesheet" href="{% static 'css/index1.css' %}">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content-wrapper">
+            <ul>
+                <li><a href="{% url 'home' %}">Return to base</a></li>
+                <li><a href="#" onclick="scrollToMap(); return false;">Maps</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'logbook' %}">Logbook</a></li> <!-- New link added -->
+                 <li><a href="{% url 'map_danger_data' %}">Map Danger Data</a></li> 
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-content-wrapper">
+        <div class="sidebar">
+            <div class="sidebar-content">
+                <h3>Scheduled Events</h3>
+                <p>Hover over this box to view details. Click on an event to keep this menu open.</p>
+                <p>Click anywhere else to close.</p>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <h1>F.R.I.D.A.Y.</h1>
+            <p>Hello, Peter Parker. How may I assist you?</p>
+
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prevBtn">&lt;</button>
+                    <span id="currentMonthYear"></span>
+                    <button id="nextBtn">&gt;</button>
+                </div>
+                <div id="calendarGrid" class="calendar-grid"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Map Section -->
+    <div id="map-container" style="margin-top: 50px;">
+        <h2>Mission Maps</h2>
+        <!-- Your map embed or content goes here -->
+    </div>
+
+
+
+    <script>
+        // Scroll to map function
+        function scrollToMap() {
+            const mapContainer = document.getElementById('map-container');
+            if (mapContainer) {
+                mapContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+        <script src="{% static 'js/interactive_map.js' %}"></script>
+        <script src="{% static 'js/index1.js' %}"></script>
+</body>
+</html>

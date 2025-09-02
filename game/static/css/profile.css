@@ -1,0 +1,70 @@
+/* -----------------------
+ * Global Page Styles
+ * ----------------------- */
+body {
+    /* The diagonal gradient from red to black */
+    background: linear-gradient(to bottom right, red, black);
+    min-height: 100vh;
+    background-attachment: fixed;
+    margin: 0;
+
+    /* The basic font and color for the page */
+    font-family: monospace;
+    color: white;
+
+    /* Center the content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* The container for the profile content, styled to match the calendar/info box */
+.profile-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-top: 0;
+    font-size: 2.5em;
+}
+
+h2 {
+    color: #ccc;
+    margin-top: 30px;
+    font-size: 1.8em;
+}
+
+p {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+li {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid red;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+li:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

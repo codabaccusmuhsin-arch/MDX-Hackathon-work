@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'library/chatbot.css' %}">
+
+
+<div class="chat-container" style="max-width: 700px; margin: auto;">
+    <h2>AI Assistant</h2>
+    <div id="chat-box" style="border: 1px solid #ccc; padding: 10px; height: 400px; overflow-y: scroll; background-color: #f9f9f9;">
+        <div class="chat-message"><strong>AI Assistant:</strong> Hi! Ask me about a spell, and I'll find it for you.</div>
+    </div>
+    <form id="chat-form" style="margin-top: 10px; display: flex;">
+        <input type="text" id="chat-input" placeholder="Type a message..." style="flex: 1; padding: 10px; font-size: 16px;">
+        <button type="submit" style="padding: 10px; font-size: 16px;">Send</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const chatBox = document.getElementById("chat-box");
+    const chatForm = document.getElementById("chat-form");
+    const chatInput = document.getElementById("chat-input");
+
+    function appendMessage(sender, text) {
+        const msgDiv = document.createElement("div");
+        msgDiv.classList.add("chat-message");
+        msgDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+        chatBox.appendChild(msgDiv);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    chatForm.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const userMessage = chatInput.value.trim();
+        if (!userMessage) return;
+
+        appendMessage("You", userMessage);
+        chatInput.value = "";
+
+        fetch("{% url 'chatbot_search_spell' %}?message=" + encodeURIComponent(userMessage))
+            .then(response => response.json())
+            .then(data => {
+                appendMessage("AI Assistant", data.reply);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                appendMessage("AI Assistant", "Oops! Something went wrong.");
+            });
+    });
+});
+</script>
+{% endblock %}

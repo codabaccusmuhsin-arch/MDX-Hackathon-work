@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="{% static 'library/base.css' %}">
+    
+    <title>{% block title %}Project Mystic{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        nav { margin-bottom: 20px; }
+        nav a { margin-right: 10px; }
+        .restricted { color: red; font-weight: bold; }
+        .spell-card { border: 1px solid #ccc; padding: 15px; background: #f9f9f9; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+
+        
+        <a href="{% url 'spell_list' %}">Library</a>
+        <li><a href="{% url 'upload_spellbook' %}">Upload Spellbook</a></li>
+        <a href="{% url 'ai_assistant' %}">AI Assistant</a>
+
+        {% if user.is_authenticated %}
+            Hello, {{ user.username }} |
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+    </nav>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

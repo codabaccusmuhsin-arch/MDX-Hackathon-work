@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Search results for "{{ query }}"</h2>
+
+{% if results %}
+    <ul>
+        {% for spell in results %}
+        <li>
+            <strong>{{ spell.name }}</strong><br>
+            {{ spell.description }}<br>
+            <em>Similarity: {{ spell.similarity|floatformat:2 }}</em>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No spells found for your query.</p>
+{% endif %}
+{% endblock %}

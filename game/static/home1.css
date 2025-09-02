@@ -1,0 +1,118 @@
+/* ===================== */
+/* Wiki Page Tiles Layout */
+/* ===================== */
+
+:root {
+  --tile-glow: #ff0000; /* 🌟 easy swap glow color */
+  --background-glow: #ffc400;
+
+}
+
+.tiles-container {
+  display: flex;
+  /*flex-wrap: wrap;*/
+  justify-content: space-evenly; /* keeps spacing even */
+  gap: 2rem;
+  padding: 4rem;
+  max-width: 1200px;      /* optional: limit container width */
+  margin: 0 auto;         /* center container */
+  box-sizing: border-box;
+ 
+}
+
+
+/* Tile styles */
+.tile {
+  position: relative;
+  width: 250px;
+  height: 350px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+    /* Static shadow behind tile */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), /* main shadow */
+              0 0 20px var(--background-glow); /* optional colored glow */
+
+
+}
+
+.tile:hover {
+  transform: scale(1.05);
+}
+
+/* Tile glow animation with ::before and ::after */
+.tile::before,
+.tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 5px; /* thickness of border */
+  background: linear-gradient(270deg, var(--tile-glow), transparent, var(--tile-glow));
+  background-size: 300% 300%;
+  animation: glowBorder 6s linear infinite;
+  z-index: 1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+}
+
+.tile::after {
+  animation-direction: reverse;
+}
+
+
+
+/* glowing border animation */
+@keyframes glowBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Content inside tile */
+.tile-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0 0 20px 20px;
+  width: 100%;
+}
+
+.tile-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tile-content p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Button inside tile */
+.tile-btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: var(--tile-glow);
+  color: #fff;
+  font-weight: bold;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.tile-btn:hover {
+  background: #fff;
+  color: var(--tile-glow);
+  box-shadow: 0 0 15px var(--tile-glow);
+}

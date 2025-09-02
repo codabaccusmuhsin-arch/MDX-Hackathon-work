@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="{% static 'leaderboard.css' %}">
+</head>
+<body>
+
+  <nav class="top-nav">
+      <a href="{% url 'home' %}" class="nav-link">Return to Base</a>
+      <a href="{% url 'user_info' %}" class="nav-link">User Info</a>
+  </nav>
+
+  <div class="container">
+      <h1>Leaderboard</h1>
+      <table id="leaderboard">
+          <thead>
+              <tr>
+                  <th>Rank</th>
+                  <th>Username</th>
+                  <th>Highscore</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- JS will populate leaderboard here -->
+          </tbody>
+      </table>
+  </div>
+
+  <script src="{% static 'leaderboard.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+/* Chat Container */
+.chat-container {
+    max-width: 700px;
+    margin: auto;
+    font-family: 'Lexend', sans-serif;
+}
+
+/* Chat Header */
+.chat-container h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Chat Box */
+#chat-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: 400px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+    color: black;  /* Ensure chat text is black */
+}
+
+/* Individual chat messages */
+.chat-message {
+    color: black;
+    margin-bottom: 5px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background-color: #ffffffcc; /* slightly translucent white for better readability */
+}
+
+/* Chat form */
+#chat-form {
+    display: flex;
+    margin-top: 10px;
+}
+
+/* Input field */
+#chat-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    color: black;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Submit button */
+#chat-form button {
+    padding: 10px;
+    font-size: 16px;
+    margin-left: 5px;
+    background-color: #8a2be2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#chat-form button:hover {
+    background-color: #ff7fff;
+}

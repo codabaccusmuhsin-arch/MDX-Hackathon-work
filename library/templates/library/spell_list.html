@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spell Library</title>
+    <link rel="stylesheet" href="{% static 'library/base.css' %}">
+    <link rel="stylesheet" href="{% static 'library/spell_list.css' %}">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        nav { margin-bottom: 20px; background: #333; color: white; padding: 10px; }
+        nav a { color: white; margin-right: 15px; text-decoration: none; }
+        nav a:hover { text-decoration: underline; }
+        .spell-card { border: 1px solid #ccc; padding: 15px; background: #f9f9f9; margin-bottom: 10px; }
+        .restricted { color: red; font-weight: bold; }
+        button { padding: 5px 10px; margin-top: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'spell_list' %}">Library</a>
+        <a href="{% url 'upload_spellbook' %}">Upload Spellbook</a>
+        <a href="{% url 'ai_assistant' %}">AI Assistant</a>
+
+        {% if user.is_authenticated %}
+            Hello, {{ user.username }} |
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Sign Up</a>
+        {% endif %}
+    </nav>
+
+    <h1>Spell Library</h1>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'add_spell' %}"><button>Add Spell</button></a>
+    {% endif %}
+
+    {% for spell in spells %}
+        <div class="spell-card">
+            <strong>{{ spell.name }}</strong>
+            {% if spell.restricted %}
+                <span class="restricted">[Restricted]</span>
+            {% endif %}
+            <div>
+                <span>Type: {{ spell.type }}</span> |
+                <span>Power Class: {{ spell.power_class }}</span> |
+                <span>Origin: {{ spell.origin }}</span>
+            </div>
+
+            {% if spell.restricted and not user.is_authenticated %}
+                <div style="color:red; font-style: italic;">
+                    This spell is restricted. Please <a href="{% url 'login' %}">sign in</a> to view details.
+                </div>
+            {% elif spell.restricted and not is_trusted %}
+                <div style="color:red; font-style: italic;">
+                    You do not have permission to view this restricted spell.
+                </div>
+            {% else %}
+                <div style="margin-top: 5px;">
+                    <strong>Author:</strong> {{ spell.author }}<br>
+                    {% if spell.time_based %}<strong>Time-Based:</strong> Yes<br>{% endif %}
+                    {% if spell.language %}<strong>Language:</strong> {{ spell.language }}<br>{% endif %}
+                    {% if spell.usage_context %}<strong>Usage Context:</strong> {{ spell.usage_context|capfirst }}<br>{% endif %}
+                </div>
+            {% endif %}
+        </div>
+    {% empty %}
+        <p>No spells found.</p>
+    {% endfor %}
+</body>
+</html>

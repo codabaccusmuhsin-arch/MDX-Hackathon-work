@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Add New Spell{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'library/add_spell.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Add a New Spell</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button id="submit-btn" type="submit">Add Spell</button>
+    </form>
+    <p><a href="{% url 'spell_list' %}">Back to Library</a></p>
+</div>
+{% endblock %}
